@@ -21,7 +21,7 @@ jobs:
 
     - name: Setup .env.prod file
       run: |
-        echo "${{ secrets.ENV_FILE }}" > ./.env.prod
+        echo "${{secrets.ENV_FILE}}" > ./.env.prod
 
     - name: Build the backend image
       run: docker build . --file ./Dockerfile.prod --tag evlahovlja1/siprojekat-backend:$(date +%s) --tag evlahovlja1/siprojekat-backend:latest
