@@ -1,0 +1,21 @@
+name: Docker Image Build
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .env.prod file
+      run: |
+        echo "${{ secrets.ENV_FILE }}" > ./.env.prod
+
+    - name: Build the backend image
+      run: docker build . --file ./Dockerfile.prod --tag backend-build-test

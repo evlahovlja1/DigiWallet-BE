@@ -1,0 +1,30 @@
+name: Docker Image Deploy
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+    - name: Setup .env.prod file
+      run: |
+        echo "${{ secrets.ENV_FILE }}" > ./.env.prod
+
+    - name: Build the backend image
+      run: docker build . --file ./Dockerfile.prod --tag evlahovlja1/siprojekat-backend:$(date +%s) --tag evlahovlja1/siprojekat-backend:latest
+      
+    - name: Docker Push backend
+      run: docker push evlahovlja1/siprojekat-backend --all-tags
