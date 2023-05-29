@@ -4,7 +4,6 @@ using AdministrationAPI.Data;
 using AdministrationAPI.Models;
 using AdministrationAPI.Models.Voucher;
 using AdministrationAPI.Services.Interfaces;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 
@@ -13,15 +12,12 @@ namespace AdministrationAPI.Services
     public class VoucherService : IVoucherService
     {
 
-        private readonly IConfiguration _configuration;
-        private readonly IMapper _mapper;
+      
         private readonly AppDbContext _context;
         private readonly IUserService _userService;
 
-        public VoucherService( IConfiguration configuration, IMapper mapper, AppDbContext context, IUserService userService)
+        public VoucherService( AppDbContext context, IUserService userService)
         {
-            _configuration = configuration;
-            _mapper = mapper;
             _context = context;
             _userService = userService;
         }

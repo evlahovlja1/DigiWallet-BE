@@ -566,7 +566,7 @@ namespace AdministrationAPI.Controllers
         }
 
         [HttpGet("{name}")]
-        public IActionResult GetUserByName([FromRoute] string name)
+        public ActionResult<User> GetUserByName([FromRoute] string name)
         {
             try
             {

@@ -18,6 +18,11 @@ namespace AdministrationAPI.Data
     {
     }
 
+        public AppDbContext()
+        {
+            // Constructor logic
+        }
+
         // Seed Roles
 
         public DbSet<ExchangeRate> ExchangeRates { get; set; }
@@ -38,7 +43,7 @@ namespace AdministrationAPI.Data
         public DbSet<TransactionClaim> TransactionClaims { get; set; }
         public DbSet<TransactionClaimDocument> TransactionClaimDocuments { get; set; }
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Voucher> Vouchers { get; set; }
+        public virtual DbSet<Voucher> Vouchers { get; set; }
         public DbSet<VoucherStatus> VoucherStatuses { get; set; }
 
     public DbSet<AccountCreationRequest> AccountCreationRequests { get; set; }
