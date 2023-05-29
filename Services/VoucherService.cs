@@ -14,12 +14,10 @@ namespace AdministrationAPI.Services
 
       
         private readonly AppDbContext _context;
-        private readonly IUserService _userService;
 
-        public VoucherService( AppDbContext context, IUserService userService)
+        public VoucherService( AppDbContext context)
         {
             _context = context;
-            _userService = userService;
         }
 
         public async Task<string> GenerateOneTimeCode()
@@ -149,6 +147,7 @@ namespace AdministrationAPI.Services
             }
             return response;
         }
+        
 
         public async Task<Voucher> GetVoucherById(int id)
         {
