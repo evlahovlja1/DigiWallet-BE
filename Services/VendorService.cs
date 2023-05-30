@@ -14,8 +14,8 @@ namespace AdministrationAPI.Services
 {
     public class VendorService : IVendorService
     {
-        private readonly IConfiguration _configuration;
-        private readonly IDocumentService _documentService;
+        private readonly IConfiguration? _configuration;
+        private readonly IDocumentService? _documentService;
         private readonly AppDbContext _context;
 
         public VendorService(IConfiguration configuration, IDocumentService documentService, AppDbContext context)
@@ -23,6 +23,11 @@ namespace AdministrationAPI.Services
             _configuration = configuration;
             _documentService = documentService;
             _context = context;
+        }
+        public VendorService(AppDbContext context){
+            _context = context;
+            _configuration = null;
+            _documentService = null;
         }
 
         #region VendorMain
