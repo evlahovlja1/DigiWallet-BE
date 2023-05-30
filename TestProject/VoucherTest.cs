@@ -19,6 +19,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit.Abstractions;
 using Microsoft.AspNetCore.Components.Routing;
+using System.Diagnostics.CodeAnalysis;
+using Castle.Components.DictionaryAdapter.Xml;
 
 namespace TestProject
 {
@@ -123,14 +125,67 @@ namespace TestProject
             Assert.NotNull(voucher);
             var beforeRedeem = voucher.VoucherStatusId;
 
-            voucher.RedeemedBy = users[1].Id;
-
             voucher = await service.RedeemVoucher(users[1], "LLL4-GTA3-g4st-35h5");
 
             _context.Verify(x => x.SaveChanges(), Times.Once);
             
             Assert.Equal("2", beforeRedeem);
             Assert.Equal("3", voucher.VoucherStatusId);
+        }
+
+
+        [Fact]
+        public async Task RedeemVoucherTest_NotActivatedVoucher()
+        {
+            var service = new VoucherService(_context.Object);
+            var voucher = service.GetVoucherByCode("12fg-4g2z-4gs2-gs35");
+
+            Assert.NotNull(voucher);
+            Assert.ThrowsAsync<Exception>(async () => await service.RedeemVoucher(users[1], "12fg-4g2z-4gs2-gs35"));
+
+        }
+
+        [Fact]
+        public async Task VoidVoucherTest_NotValidVoucher()
+        {
+            var service = new VoucherService(_context.Object);
+            Assert.ThrowsAsync<Exception>(async () => await service.VoidVoucher("kg45-fkai-3k5f-ek1f"));
+
+        }
+
+        [Fact]
+        public async Task VoidVoucherTest_ValidVoucher()
+        {
+            var service = new VoucherService(_context.Object);
+            var voucher = service.GetVoucherByCode("12fg-4g2z-4gs2-gs35");
+
+            Assert.NotNull(voucher);
+            var beforeVoid = voucher.VoucherStatusId;
+
+            voucher = await service.VoidVoucher("12fg-4g2z-4gs2-gs35");
+
+            _context.Verify(x => x.SaveChanges(), Times.Once);
+
+            Assert.Equal("1", beforeVoid);
+            Assert.Equal("4", voucher.VoucherStatusId);
+        }
+
+
+        [Fact]
+        public async Task GetVoucherByUserIdTest()
+        {
+            var service = new VoucherService(_context.Object);
+            var voucher = service.GetVoucherByUserId(users[6].Id);
+            Assert.NotNull(voucher);
+       }
+
+
+        [Fact]
+        public async Task GetVouchersByAdminUsernameTest1()
+        {
+            var service = new VoucherService(_context.Object);
+            var voucher = service.GetVouchers(users[7].UserName);
+            Assert.NotNull(voucher);
         }
 
 

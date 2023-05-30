@@ -26,7 +26,7 @@ using Microsoft.AspNetCore.Http;
 namespace TestProject
 
 {
-    public class UserTests
+    public class UserTestTB
     {
 
         private List<User> users = new List<User>();
@@ -42,7 +42,7 @@ namespace TestProject
         private Mock<IHttpContextAccessor> _httpContext = new Mock<IHttpContextAccessor>();
 
 
-        public UserTests(ITestOutputHelper output)
+        public UserTestTB(ITestOutputHelper output)
         {
             this.output = output;
 
