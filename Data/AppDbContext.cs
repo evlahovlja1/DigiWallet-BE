@@ -30,16 +30,16 @@ namespace AdministrationAPI.Data
         public DbSet<EmailActivationCode> EmailActivationCodes { get; set; }
         public DbSet<SMSActivationCode> SMSActivationCodes { get; set; }
         public DbSet<TokenValidity> TokenValidities { get; set; }
-        public DbSet<Vendors> Vendors { get; set; }
+        public virtual DbSet<Vendors> Vendors { get; set; }
         public DbSet<VendorUser> VendorUsers { get; set; }
-        public DbSet<VendorLocation> VendorLocations { get; set; }
-        public DbSet<VendorPOS> VendorPOS { get; set; }
+        public virtual DbSet<VendorLocation> VendorLocations { get; set; }
+        public virtual DbSet<VendorPOS> VendorPOS { get; set; }
         public DbSet<VendorRoles> VendorRoles { get; set; }
         public DbSet<VendorUserRole> VendorUserRoles { get; set; }
-        public DbSet<Document> Documents { get; set; }
-        public DbSet<VendorPaymentTermContract> VendorPaymentTermContract { get; set; }
-        public DbSet<VendorPaymentTerm> VendorPaymentTerm { get; set; }
-        public DbSet<InvoiceFrequency> InvoiceFrequency { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
+        public virtual DbSet<VendorPaymentTermContract> VendorPaymentTermContract { get; set; }
+        public virtual DbSet<VendorPaymentTerm> VendorPaymentTerm { get; set; }
+        public virtual DbSet<InvoiceFrequency> InvoiceFrequency { get; set; }
         public DbSet<TransactionClaim> TransactionClaims { get; set; }
         public DbSet<TransactionClaimDocument> TransactionClaimDocuments { get; set; }
         public DbSet<Account> Accounts { get; set; }
