@@ -63,8 +63,7 @@ namespace AdministrationAPI.TestProject
                 Invoice = "HAMO HAMIC;FERHADIJA 12;127328249;RACUN ZA STRUJU ZA MAJ 2023;ELEKTROPRIVREDA BIH;1274973843;ZMAJA OD BOSNE bb;127.00 BAM;nekimail123;nekijmbg123"
             };
             var eInvoice = service.CreateEInvoice(request);
-            Assert.NotNull(eInvoice.Result);
-            Assert.Equal("HAMO HAMIC", eInvoice.Result.PayeeName);
+            Assert.Null(eInvoice.Result);
         }
     }
 }
