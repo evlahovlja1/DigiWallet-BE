@@ -33,5 +33,14 @@ namespace TestProject
             _context.Verify(x => x.Vendors.Add(It.IsAny<Vendors>()), Times.Once);            
         }
 
+        public void GetVendorByNameTest()
+        {
+            var service = new VendorService(_context.Object);
+            var vendor = service.GetByName("Merkator");
+
+            Assert.NotNull(vendor);
+            Assert.Equal(vendor.Id,1);
+        }
+
     }
 }
