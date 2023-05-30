@@ -24,11 +24,6 @@ namespace AdministrationAPI.Services
             _documentService = documentService;
             _context = context;
         }
-        public VendorService(AppDbContext context){
-            _context = context;
-            _configuration = null;
-            _documentService = null;
-        }
 
         #region VendorMain
         public bool Create(VendorCreateRequest request)
