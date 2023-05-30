@@ -33,7 +33,7 @@ namespace TestProject
         private readonly ITestOutputHelper output;
         private Mock<AppDbContext> _context = new Mock<AppDbContext>();
 
-        private Mock<UserManager<User>> _userManager = new Mock<UserManager<User>>();
+        private Mock<UserManager<User>> _userManager = new Mock<UserManager<User>>(Mock.Of<IUserStore<User>>(), null, null, null, null, null, null, null, null);
         private Mock<SignInManager<User>> _signInManager = new Mock<SignInManager<User>>();
         private Mock<IConfiguration> _configuration = new Mock<IConfiguration>();
         private Mock<IMapper> _mapper = new Mock<IMapper>();
