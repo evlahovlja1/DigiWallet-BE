@@ -101,18 +101,6 @@ namespace TestProject
             Assert.Equal(users[0].Id, voucher.CreatedBy);
         }
 
-        /*
-        [Fact]
-        public async Task GetVouchersTest1()
-        {
-            var service = new VoucherService(_context.Object);
-            var alminasVouchers = await service.GetVouchers("abrulic1");
-            output.WriteLine("str" + alminasVouchers);
-
-            Assert.Equal(4, alminasVouchers.Count);
-           
-        }*/
-
         [Fact]
         public async Task ActivateVoucherTest1()
         {
@@ -121,7 +109,28 @@ namespace TestProject
             output.WriteLine("str" + voucher);
 
             _context.Verify(x => x.SaveChanges(), Times.Once);
+            Assert.NotNull(voucher);
             Assert.Equal("2", voucher.VoucherStatusId);
+        }
+
+
+        [Fact]
+        public async Task RedeemVoucherTest_ActivatedVoucher()
+        {
+            var service = new VoucherService(_context.Object);
+            var voucher = service.GetVoucherByCode("LLL4-GTA3-g4st-35h5");
+     
+            Assert.NotNull(voucher);
+            var beforeRedeem = voucher.VoucherStatusId;
+
+            voucher.RedeemedBy = users[1].Id;
+
+            voucher = await service.RedeemVoucher(users[1], "LLL4-GTA3-g4st-35h5");
+
+            _context.Verify(x => x.SaveChanges(), Times.Once);
+            
+            Assert.Equal("2", beforeRedeem);
+            Assert.Equal("3", voucher.VoucherStatusId);
         }
 
 

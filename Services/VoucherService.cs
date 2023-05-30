@@ -48,15 +48,9 @@ namespace AdministrationAPI.Services
             voucer.CreatedBy = createdBy;
             voucer.VoucherStatusId = "1";
             _context.Vouchers.Add(voucer);
-            try
-            {
+           
                 _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                throw ex;
-            }
+      
             return voucer;
         }
 

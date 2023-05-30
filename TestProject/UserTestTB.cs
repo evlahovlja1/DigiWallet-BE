@@ -21,8 +21,9 @@ using Xunit.Abstractions;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Identity;
 using AdministrationAPI.Contracts.Requests.Users;
+using Microsoft.AspNetCore.Http;
 
-namespace AdministrationAPI.TestProject
+namespace TestProject
 
 {
     public class UserTests
@@ -32,13 +33,13 @@ namespace AdministrationAPI.TestProject
         private readonly ITestOutputHelper output;
         private Mock<AppDbContext> _context = new Mock<AppDbContext>();
 
-        private readonly Mock<UserManager<User>> _userManager = new Mock<UserManager<User>>();
-        private readonly Mock<SignInManager<User>> _signInManager = new Mock<SignInManager<User>>();
-        private readonly Mock<IConfiguration> _configuration = new Mock<IConfiguration>();
-        private readonly Mock<IMapper> _mapper = new Mock<IMapper>();
-        private readonly Mock<RoleManager<IdentityRole>> _roleManager = new Mock<RoleManager<IdentityRole>>();
-        private readonly Mock<IVendorService> _vendorService = new Mock<IVendorService>();
-        private readonly Mock<IHttpContextAccessor> _httpContext = new Mock<IHttpContextAccessor>();
+        private Mock<UserManager<User>> _userManager = new Mock<UserManager<User>>();
+        private Mock<SignInManager<User>> _signInManager = new Mock<SignInManager<User>>();
+        private Mock<IConfiguration> _configuration = new Mock<IConfiguration>();
+        private Mock<IMapper> _mapper = new Mock<IMapper>();
+        private Mock<RoleManager<IdentityRole>> _roleManager = new Mock<RoleManager<IdentityRole>>();
+        private Mock<IVendorService> _vendorService = new Mock<IVendorService>();
+        private Mock<IHttpContextAccessor> _httpContext = new Mock<IHttpContextAccessor>();
 
 
         public UserTests(ITestOutputHelper output)
@@ -66,7 +67,7 @@ namespace AdministrationAPI.TestProject
         public async Task GetUserByIdTest()
         {
             var service = new UserService(_userManager.Object, _signInManager.Object, _configuration.Object, _mapper.Object, _roleManager.Object, _context.Object, _vendorService.Object, _httpContext.Object);
-            var user =  service.GetUserById("ID");
+            var user = service.GetUserById("ID");
             Assert.NotNull(user);
             Assert.Equal("ID", user.Id);
             Assert.Equal("Test", user.FirstName);
