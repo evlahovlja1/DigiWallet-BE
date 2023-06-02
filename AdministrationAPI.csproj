@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestProject\**" />
+    <Content Remove="TestProject\**" />
+    <EmbeddedResource Remove="TestProject\**" />
+    <None Remove="TestProject\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Contracts\Responses\Transactions\Class.cs" />
   </ItemGroup>
 
@@ -58,10 +65,6 @@
     <None Update=".env.dev">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestProject\" />
   </ItemGroup>
 
 </Project>
