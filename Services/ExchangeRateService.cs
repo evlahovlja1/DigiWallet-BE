@@ -15,7 +15,7 @@ namespace AdministrationAPI.Services
             _context = context;
         }
 
-        public async Task AddCurrency(CurrencyRequest currencyRequest)
+        public async Task<bool> AddCurrency(CurrencyRequest currencyRequest)
         {
             if (currencyRequest != null)
             {
@@ -23,7 +23,7 @@ namespace AdministrationAPI.Services
 
                 if (existingCurrency != null)
                 {
-                    return;
+                    return false;
                 }
 
                 Currency currency = new Currency
@@ -35,10 +35,14 @@ namespace AdministrationAPI.Services
 
                 await _context.AddAsync(currency);
                 await _context.SaveChangesAsync();
+
+                return true;
             }
+
+            return false;
         }
 
-        public async Task AddExchangeRate(ExchangeRateRequest exchangeRateRequest)
+        public async Task<bool> AddExchangeRate(ExchangeRateRequest exchangeRateRequest)
         {
             if (exchangeRateRequest != null)
             {
@@ -56,7 +60,7 @@ namespace AdministrationAPI.Services
 
                 if (existingExchangeRate != null)
                 {
-                    return;
+                    return false;
                 }
 
                 ExchangeRate exchangeRate = new ExchangeRate
@@ -82,7 +86,11 @@ namespace AdministrationAPI.Services
                 await _context.AddAsync(exchangeRate);
                 await _context.AddAsync(exchangeRateReciprocal);
                 await _context.SaveChangesAsync();
+
+                return true;
             }
+
+            return false;
         }
 
         public async Task<ICollection<ExchangeRate>> GetExchangeRates()

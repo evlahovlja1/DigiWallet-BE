@@ -25,10 +25,10 @@ namespace AdministrationAPI.Data
 
         // Seed Roles
 
-        public DbSet<ExchangeRate> ExchangeRates { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
-        public DbSet<EmailActivationCode> EmailActivationCodes { get; set; }
-        public DbSet<SMSActivationCode> SMSActivationCodes { get; set; }
+        public virtual DbSet<ExchangeRate> ExchangeRates { get; set; }
+        public virtual DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<EmailActivationCode> EmailActivationCodes { get; set; }
+        public virtual DbSet<SMSActivationCode> SMSActivationCodes { get; set; }
         public DbSet<TokenValidity> TokenValidities { get; set; }
         public virtual DbSet<Vendors> Vendors { get; set; }
         public DbSet<VendorUser> VendorUsers { get; set; }
