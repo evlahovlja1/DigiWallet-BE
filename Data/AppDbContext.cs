@@ -26,7 +26,7 @@ namespace AdministrationAPI.Data
         // Seed Roles
 
         public DbSet<ExchangeRate> ExchangeRates { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<Currency> Currencies { get; set; }
         public DbSet<EmailActivationCode> EmailActivationCodes { get; set; }
         public DbSet<SMSActivationCode> SMSActivationCodes { get; set; }
         public DbSet<TokenValidity> TokenValidities { get; set; }
@@ -42,11 +42,11 @@ namespace AdministrationAPI.Data
         public virtual DbSet<InvoiceFrequency> InvoiceFrequency { get; set; }
         public DbSet<TransactionClaim> TransactionClaims { get; set; }
         public DbSet<TransactionClaimDocument> TransactionClaimDocuments { get; set; }
-        public DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Voucher> Vouchers { get; set; }
         public DbSet<VoucherStatus> VoucherStatuses { get; set; }
 
-    public DbSet<AccountCreationRequest> AccountCreationRequests { get; set; }
+    public virtual DbSet<AccountCreationRequest> AccountCreationRequests { get; set; }
 
     public DbSet<TransactionClaimUser> TransactionClaimUsers { get; set; }
     public DbSet<TransactionClaimMessage> TransactionClaimMessages { get; set; }

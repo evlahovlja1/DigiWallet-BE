@@ -7,6 +7,7 @@
     <UserSecretsId>97b4a545-5cdd-4ace-8a58-476ae9169655</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <Compile Remove="Contracts\Responses\Transactions\Class.cs" />
   </ItemGroup>
@@ -58,10 +59,6 @@
     <None Update=".env.dev">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestProject\" />
   </ItemGroup>
 
 </Project>
