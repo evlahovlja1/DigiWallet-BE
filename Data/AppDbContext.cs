@@ -40,7 +40,7 @@ namespace AdministrationAPI.Data
         public virtual DbSet<VendorPaymentTermContract> VendorPaymentTermContract { get; set; }
         public virtual DbSet<VendorPaymentTerm> VendorPaymentTerm { get; set; }
         public virtual DbSet<InvoiceFrequency> InvoiceFrequency { get; set; }
-        public DbSet<TransactionClaim> TransactionClaims { get; set; }
+        public virtual DbSet<TransactionClaim> TransactionClaims { get; set; }
         public DbSet<TransactionClaimDocument> TransactionClaimDocuments { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Voucher> Vouchers { get; set; }
@@ -48,12 +48,12 @@ namespace AdministrationAPI.Data
 
     public virtual DbSet<AccountCreationRequest> AccountCreationRequests { get; set; }
 
-    public DbSet<TransactionClaimUser> TransactionClaimUsers { get; set; }
+    public virtual DbSet<TransactionClaimUser> TransactionClaimUsers { get; set; }
     public DbSet<TransactionClaimMessage> TransactionClaimMessages { get; set; }
     public DbSet<ClaimsMessagesDocuments> ClaimsMessagesDocuments { get; set; }
-    public DbSet<EInvoiceRequest> EInvoiceRequests { get; set; }
+    public virtual DbSet<EInvoiceRequest> EInvoiceRequests { get; set; }
 
-    public DbSet<EInvoice> EInvoices { get; set; }
+    public virtual DbSet<EInvoice> EInvoices { get; set; }
     public DbSet<EInvoiceLog> EInvoiceLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
