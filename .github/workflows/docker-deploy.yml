@@ -1,12 +1,37 @@
-name: Docker Image Deploy
+name: Test and Deploy
 
-on:
-  release:
-    types: [ published ]
+#on:
+  #workflow_run:
+    #workflows: [ "e2e-tests" ]
+    #types: [ completed ]
+    
+#on:
+  #pull_request:
+    #branches: [ main ]
+    
+#on:
+  #release:
+    #types: [ published ]
+    
+on: [ workflow_dispatch ]
 
 jobs:
 
+  xunit:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: run-tests
+        run: |
+        echo "${{ secrets.ENV_FILE }}" > ./AdministrationAPI/.env.prod
+        dotnet restore
+        dotnet test
+    
+
   deploy:
+    needs: xunit
 
     runs-on: ubuntu-latest
 
@@ -21,10 +46,10 @@ jobs:
 
     - name: Setup .env.prod file
       run: |
-        echo "${{ secrets.ENV_FILE }}" > ./.env.prod
+        echo "${{ secrets.ENV_FILE }}" > ./AdministrationAPI/.env.prod
 
     - name: Build the backend image
-      run: docker build . --file ./Dockerfile.prod --tag evlahovlja1/siprojekat-backend:$(date +%s) --tag evlahovlja1/siprojekat-backend:latest
+      run: docker build . --file ./AdministrationAPI/Dockerfile.prod --tag evlahovlja1/siprojekat-backend:$(date +%s) --tag evlahovlja1/siprojekat-backend:latest
       
     - name: Docker Push backend
       run: docker push evlahovlja1/siprojekat-backend --all-tags

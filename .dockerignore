@@ -1,6 +1,10 @@
-Migrations
-.config
+AdministrationAPI/Migrations
+AdministrationAPI/.config
 .vscode
-bin
-obj
-libman.json
+AdministrationAPI/bin
+AdministrationAPI/obj
+AdministrationAPI/libman.json
+TestProject/bin
+TestProject/obj
+.git
+.vs

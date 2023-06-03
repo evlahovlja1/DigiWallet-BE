@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="TestProject\**" />
-    <Content Remove="TestProject\**" />
-    <EmbeddedResource Remove="TestProject\**" />
-    <None Remove="TestProject\**" />
+    <Compile Remove="..\TestProject\**" />
+    <Content Remove="..\TestProject\**" />
+    <EmbeddedResource Remove="..\TestProject\**" />
+    <None Remove="..\TestProject\**" />
   </ItemGroup>
 
   <ItemGroup>
