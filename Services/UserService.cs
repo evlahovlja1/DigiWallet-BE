@@ -498,7 +498,7 @@ namespace AdministrationAPI.Services
             var user = GetUserByEmail(email);
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             EmailSender emailSender = new EmailSender(_configuration);
-            await emailSender.SendConfirmationEmailAsync(email, $"http://siprojekat.duckdns.org:3000/user/setPassword?token={WebUtility.UrlEncode(token)}&id={user.Id}");
+            await emailSender.SendConfirmationEmailAsync(email, $"http://digipay.cc/user/setPassword?token={WebUtility.UrlEncode(token)}&id={user.Id}");
         }
 
         public async Task<IdentityResult> SetPassword(SetPasswordRequest request)
