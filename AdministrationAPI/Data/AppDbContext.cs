@@ -42,11 +42,11 @@ namespace AdministrationAPI.Data
         public virtual DbSet<InvoiceFrequency> InvoiceFrequency { get; set; }
         public DbSet<TransactionClaim> TransactionClaims { get; set; }
         public DbSet<TransactionClaimDocument> TransactionClaimDocuments { get; set; }
-        public DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Voucher> Vouchers { get; set; }
         public DbSet<VoucherStatus> VoucherStatuses { get; set; }
 
-    public DbSet<AccountCreationRequest> AccountCreationRequests { get; set; }
+    public virtual DbSet<AccountCreationRequest> AccountCreationRequests { get; set; }
 
     public DbSet<TransactionClaimUser> TransactionClaimUsers { get; set; }
     public DbSet<TransactionClaimMessage> TransactionClaimMessages { get; set; }
