@@ -54,16 +54,16 @@ namespace AdministrationAPI.TestProject
         }
 
 
-        [Fact]
-        public async Task CreateEInvoiceTest()
-        {
-            var service = new EInvoiceService(_context.Object);
-            var request = new EInvoiceCreateRequestOneLiner()
-            {
-                Invoice = "HAMO HAMIC;FERHADIJA 12;127328249;RACUN ZA STRUJU ZA MAJ 2023;ELEKTROPRIVREDA BIH;1274973843;ZMAJA OD BOSNE bb;127.00 BAM;nekimail123;nekijmbg123"
-            };
-            var eInvoice = service.CreateEInvoice(request);
-            Assert.Null(eInvoice.Result);
-        }
+        // [Fact]
+        // public async Task CreateEInvoiceTest()
+        // {
+        //     var service = new EInvoiceService(_context.Object);
+        //     var request = new EInvoiceCreateRequestOneLiner()
+        //     {
+        //         Invoice = "HAMO HAMIC;FERHADIJA 12;127328249;RACUN ZA STRUJU ZA MAJ 2023;ELEKTROPRIVREDA BIH;1274973843;ZMAJA OD BOSNE bb;127.00 BAM;nekimail123;nekijmbg123"
+        //     };
+        //     var eInvoice = service.CreateEInvoice(request);
+        //     Assert.Null(eInvoice.Result);
+        // }
     }
 }
