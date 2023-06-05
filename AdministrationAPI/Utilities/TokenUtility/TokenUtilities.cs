@@ -81,5 +81,10 @@ namespace AdministrationAPI.Utilities
                 Roles = roleValues
             };
         }
+
+        public virtual TokenVerificationResult VerifyJwtToken(string jwt)
+        {
+            return VerifyToken(jwt);
+        }
     }
 }

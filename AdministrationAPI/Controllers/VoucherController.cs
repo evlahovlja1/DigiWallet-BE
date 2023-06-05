@@ -30,6 +30,7 @@ namespace AdministrationAPI.Controllers
         }
 
 
+
         [Authorize(Roles = "Admin")]
         [HttpPost("create-voucher")]
         public async Task<IActionResult> CreateVoucher([FromBody] VoucherRequest voucherRequest)
@@ -37,7 +38,7 @@ namespace AdministrationAPI.Controllers
             try
             {
                 _userService.IsTokenValid(ControlExtensions.GetToken(HttpContext));
-                TokenVerificationResult token = TokenUtilities.VerifyToken(ControlExtensions.GetToken(HttpContext));
+                TokenVerificationResult token = _tokenUtilities.VerifyJwtToken(ControlExtensions.GetToken(HttpContext));
            
                 List<VoucherDataResponse> vouchers = new List<VoucherDataResponse>();
 
@@ -69,7 +70,7 @@ namespace AdministrationAPI.Controllers
             try
             {
                 _userService.IsTokenValid(ControlExtensions.GetToken(HttpContext));
-                TokenVerificationResult token = TokenUtilities.VerifyToken(ControlExtensions.GetToken(HttpContext));
+                TokenVerificationResult token = _tokenUtilities.VerifyJwtToken(ControlExtensions.GetToken(HttpContext));
 
                 Voucher voucher = _voucherService.GetVoucherByCode(changeVoucherStatusRequest.Code);
                 if (voucher == null)
@@ -111,7 +112,7 @@ namespace AdministrationAPI.Controllers
         public async  Task<IActionResult> GetVouchers()
         {
             _userService.IsTokenValid(ControlExtensions.GetToken(HttpContext));
-            TokenVerificationResult token = TokenUtilities.VerifyToken(ControlExtensions.GetToken(HttpContext));
+            TokenVerificationResult token = _tokenUtilities.VerifyJwtToken(ControlExtensions.GetToken(HttpContext));
 
             List<VoucherDataResponse> vouchers = await _voucherService.GetVouchers(token.Username);
             return Ok(vouchers);
