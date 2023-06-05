@@ -34,6 +34,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           update-comment-if-one-exists: false
+          create-results-file: true
+          report-title-filter: "Tests" # See Notes below on title output
+
+      - name: Annotate Test Results
+        run: cat ${{ steps.process-test.outputs.test-results-file-path }} > $GITHUB_STEP_SUMMARY
 
   deploy:
     needs: xunit
