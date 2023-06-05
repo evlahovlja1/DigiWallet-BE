@@ -31,9 +31,16 @@ jobs:
         if: always()
         # You may also reference just the major or major.minor version
         uses: im-open/process-dotnet-test-results@v2.3.0
+        id: process-test
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          #only if on pull_request in yml
           update-comment-if-one-exists: false
+          create-results-file: true
+          report-title-filter: "Tests" # See Notes below on title output
+
+      - name: Annotate Test Results
+        run: cat ${{ steps.process-test.outputs.test-results-file-path }} > $GITHUB_STEP_SUMMARY
 
   deploy:
     needs: xunit
