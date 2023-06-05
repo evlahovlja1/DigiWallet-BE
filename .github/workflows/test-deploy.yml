@@ -25,10 +25,13 @@ jobs:
         uses: actions/checkout@v3
       - name: run-tests
         run: |
-          echo "${{ secrets.ENV_FILE }}" > ./AdministrationAPI/.env.prod
-          dotnet restore
-          dotnet test
-    
+          dotnet test --logger trx --configuration Release
+      - name: Process trx reports with default
+        if: always()
+        # You may also reference just the major or major.minor version
+        uses: im-open/process-dotnet-test-results@v2.3.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: xunit
