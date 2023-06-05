@@ -24,7 +24,6 @@ using AdministrationAPI.Contracts.Requests.Users;
 using Microsoft.AspNetCore.Http;
 
 namespace AdministrationAPI.TestProject
-askldnslak
 {
     public class UserTests
     {
