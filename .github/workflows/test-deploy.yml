@@ -31,6 +31,7 @@ jobs:
         if: always()
         # You may also reference just the major or major.minor version
         uses: im-open/process-dotnet-test-results@v2.3.0
+        id: process-test
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           update-comment-if-one-exists: false
