@@ -13,11 +13,11 @@ name: Test and Deploy
   #release:
     #types: [ published ]
     
-#on: [ workflow_dispatch ]
+on: [ workflow_dispatch ]
 
-on:
-  push:
-    branches: [ main ]
+# on:
+#   push:
+#     branches: [ main ]
 
 jobs:
 
@@ -60,11 +60,11 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
-    - name: Setup .env.prod file
+    - name: Setup .env file
       run: |
         pwd
         ls
-        echo "${{ secrets.ENV_FILE }}" > ./AdministrationAPI/.env.prod
+        echo "${{ secrets.ENV_FILE }}" > ./AdministrationAPI/.env
 
     - name: Build the backend image
       run: docker build . --file ./Dockerfile.prod --tag evlahovlja1/siprojekat-backend:$(date +%s) --tag evlahovlja1/siprojekat-backend:latest
